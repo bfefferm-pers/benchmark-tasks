@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robocurve-guide-rails"
+version = "0.0.1"
+
+[project.entry-points."inspect_robots.embodiments"]
+yam_guide_rail = "guide_rails.embodiment:make_embodiment"
+
+[tool.setuptools.packages.find]
+include = ["guide_rails*"]

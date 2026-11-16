@@ -1,0 +1,21 @@
+{
+  "title": "Change a conveyor lane over to a 66 mm can: set the adjustable guide rail on two setting plugs, lock both clamp knobs, then run a sample can through",
+  "category": "Impact on jobs",
+  "keywords": [
+    "changeover",
+    "conveyor",
+    "guide rail",
+    "packaging line",
+    "clamp knob",
+    "bimanual"
+  ],
+  "instruction": "Set this lane for the 66 mm can and run the sample can through it, leaving the setting plugs on their rests.",
+  "context": "Every product change on a filling or packaging line means resetting the conveyor guide rails to the new container, usually with setting plugs or gauge blocks and clamp knobs, and trying it with a sample before the line restarts. Packaging and filling machine operators and tenders (379,060 US jobs, BLS OEWS May 2025) list \"setting guides\" and adjusting \"machine components ... according to size\" of product as core tasks (O*NET 51-9111.00); press and machine setters (171,200) \"Position guides, stops ... or other fixtures\" (O*NET 51-4031.00); industrial machinery mechanics (439,640) do the changeovers on many lines.",
+  "setup": "Positions in cm from the midpoint between the arm bases (x away from the arms, y toward the left arm); heights above the table. A 56 cm section of conveyor (not running) lies across the table along y: an 82.6 mm (3.25 in) acetal tabletop chain, top 5.0 cm up, centred on x 33.5, between 15 mm steel side frames. Far guide rail (fixed datum): a 34 cm steel flat rail 17.5 x 25.4 mm with a 3 mm UHMW wear strip, product face at x 36.9, centre 9.0 cm up, on two fixed brackets. Near guide rail (adjustable, 0.63 kg with its rods): the same rail and wear strip, product face at x 29.1 (a 78 mm lane), with a 1/2 in stainless rod at y +11 and y -11 sliding along x in an acetal cross block (45 x 51 x 60 mm, centred x 21.5) on a 1/2 in post; travel 62 to 100 mm lane; the rail may skew up to 6 degrees. On each block a black 40 mm six-lobe clamp knob (M8 screw, yellow index mark), locked at 0.5 N m. Two orange acetal setting plugs, 68.0 mm across and 60 mm tall (0.31 kg), stand on the chain against the datum rail at y +11 and y -11. Two green 100 mm rest discs (3 mm thick) lie on the table beyond the lane's left (outfeed) end, centred at (16.5, +28.5) and (25.0, +38.5). A full 355 ml aluminium drinks can (66 mm body, 122 mm tall, 0.38 kg) stands on the chain at y -24.0, outside the rails at the infeed end. Both grippers start open at the ready pose. The screenshot shows the start.",
+  "scoring": "Read at the end of the run. Lane clearance at a bracket = lane width there (datum face to adjustable face, ruler or calipers at the rod) minus 66.0 mm. In band: 0.5 to 3.0 mm. A clamp holds when its rod does not slip under a 10 N push along the rod (spring scale on the rail at that bracket). 0 if a part is off the table or neither bracket is in band. 0.25 if only one bracket is in band, or both are but a gripper is within 6 cm of the rail, the rail is moving, or neither clamp holds. 0.5: both in band, rail let go and still, one clamp holds. 0.75: the same with both clamps holding. 1.0: also both plugs standing upright on the rests (centre within 15 mm of a rest centre, one per rest), the can run through: upright on the chain with its centre 30 mm or more past the left bracket (y +14 or more), having passed the right bracket only after both clamps held, both grippers 6 cm or more from the rail, knobs and plugs, and everything still for the last 1 s.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "reset_notes": "Simulation: everything returns to the start, both knobs locked, at reset. Real trial: set the lane back to 78 mm with a 78 mm gauge block and lock both knobs to 0.5 N m (torque screwdriver with a knob adapter), plugs against the datum rail at the brackets, the can at the infeed end.",
+  "fidelity": "Rigid bodies with real contact for rails, rods, blocks, knobs, plugs, can and hands; real-size parts. The clamp is a declared law on real joints: knob turning torque and rod holding force both rise with the knob's turn past the seat (0.5 N m and 94 N as found); a rod holding 10 N or more is locked where it stands. Thread and split-block elasticity are not meshed. Chain not running; round parts are 32-sided prisms.",
+  "scores": "Dream-1 run: 0.0; scripted demo: 1.0",
+  "media": "M-FWNV8W"
+}
