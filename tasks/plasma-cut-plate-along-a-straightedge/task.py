@@ -481,7 +481,7 @@ def ik_errors(wps):
     return worst_p, worst_r, bad
 
 
-# -- self-check (no simulator): the demo fits the run limit, IK reaches every waypoint, the tools' masses and balance -----
+# -- self-test (no simulator): the demo fits the run limit, IK reaches every waypoint, the tools' masses and balance -----
 if __name__ == "__main__":
     wps = demo()
     t = max((sum(w.duration for w in ws) for ws in wps.values()), default=0.0)

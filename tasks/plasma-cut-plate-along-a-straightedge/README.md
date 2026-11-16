@@ -17,7 +17,7 @@ The score is printed as `task_score`. Use `--policy dream` for Dream-1.
 
 - **Runtime per trial:** about 3 minutes on one L40S GPU (890 steps: the 829-step demo plus the policy's 3 s hold); 10-20 minutes on a shared GPU.
 - **Seeds:** none. The start is fixed and `object_jitter=0`; `--seed 0` was used for the demo.
-- **Scoring checks, no simulator** (in the simulator's Python environment): `python -m pytest -q test_score.py`. `python task.py` checks the demo's reach and length (829 steps). `python dev/replay.py` plays the demo's plan with ideal tracking through the scorer.
+- **Scoring tests, no simulator** (in the simulator's Python environment): `python -m pytest -q test_score.py`. `python task.py` tests the demo's reach and length (829 steps). `python dev/replay.py` plays the demo's plan with ideal tracking through the scorer.
 - **The scripted demo** is open loop. It uses only the fixed starting layout, which a policy can see, and reads no simulator state. The left arm takes the straightedge by its handle, carries it over the clamps, sets it on the plate and presses it down. The right arm takes the torch and waits beside the plate until the straightedge is held down, then brings the shield against the straightedge's overhanging end just beyond the plate's far edge and draws it toward the near edge at 12.7 mm/s, leaning on the straightedge and resting lightly on the plate. The strip drops as the last segment is cut. Both tools then go back and both arms move away. The plan aims against the arms' measured give under load (the torch hand sags 10 mm with the torch in it; the straightedge hand ends 9.7 mm to the side and 0.39 degrees round as it presses down), measured from logged runs.
 - **Shortcut variants** (`PLASMA_DEMO=...`, debugging only), with the scores measured in the simulator (the full demo scored 1.0 in two runs in a row):
 
@@ -51,21 +51,45 @@ The simulated cutter is a 30 A-class hand air plasma cutter (15-30 A output) set
 
 These are the trial's fixed settings, set once before a trial and not changed during it.
 
-- **Cutter:** a 30 A-class air plasma cutter with a hand torch, set to 20 A, with its shielded (drag) consumables: a drag shield 20 mm across whose rim stands 2 mm below the nozzle. Contact (blowback) pilot-arc start, not high-frequency start, so the robots' electronics are not exposed to HF. Dry, oil-free compressed air at the pressure and flow the cutter's manual states, through a filter and regulator. Before the trial a welder makes a 100 mm test cut on scrap of the same plate along a straightedge at the rated 12.7 mm/s, and two more at 6 and 21 mm/s: the first must meet every segment criterion below, the slow one must show the dross or melted corner that fails a segment and the fast one must fail to cut through. If not, the current is adjusted in 1 A steps (18-22 A) and then fixed.
+- **Cutter:** a 120 V hand air plasma cutter (20 to 30 A class) set to 20 A, with its shielded (drag) consumables: a drag shield 20 mm across whose rim stands 2 mm below the nozzle. Products and prices for buying or renting one are in the next section. Follow the cutter's manual for the work clamp and for routing the torch lead away from the robots' cables. Dry, oil-free compressed air at the pressure and flow the cutter's manual states, through a filter and regulator. Before the trial a welder makes a 100 mm test cut on scrap of the same plate along a straightedge at the rated 12.7 mm/s, and two more at 6 and 21 mm/s: the first must meet every segment criterion below, the slow one must show the dross or melted corner that fails a segment and the fast one must fail to cut through. If not, the current is adjusted in 1 A steps (18-22 A) and then fixed.
 - **Arc control:** the robot presses no trigger. The torch's trigger circuit is wired to a hold-to-run switch held by the trial supervisor outside the screens. The supervisor closes it only while the shield is on the plate (within 2 mm of it), between the plate's two edges and within 10 mm of the line, as seen on the filtered camera view, and releases it when the torch leaves the near edge, lifts, or stops, or at any time to stop the trial. The simulation's arc follows the same criterion from the torch's pose.
 - **Emergency stop:** one emergency-stop button beside the supervisor cuts both the robots' power and the cutter's output; releasing the arc switch is the second stop.
 - **Torch and lead:** the hand torch weighs about 0.3 kg with consumables. A glass-filled nylon grip block (30 x 36 x 26 mm) is clamped on the handle with its centre 90 mm behind the head's axis. The lead and air hose hang from an overhead spring balancer above the stand, adjusted so that, with the torch held over the line, a spring scale at the grip reads the simulated 0.33 kg within 0.05 kg and under 1 N of sideways pull anywhere along the cut.
-- **Straightedge:** a bright mild-steel flat bar 260 x 25 x 5 mm with a 30 x 88 x 5 mm steel tab welded to the middle of its back edge and a 30 mm red nylon handle block screwed to the tab, 95 mm from the working edge (0.39 kg in all). The working edge is checked straight within 0.2 mm before each trial and wiped clean of spatter.
+- **Straightedge:** a bright mild-steel flat bar 260 x 25 x 5 mm with a 30 x 88 x 5 mm steel tab welded to the middle of its back edge and a 30 mm red nylon handle block screwed to the tab, 95 mm from the working edge (0.39 kg in all). The working edge is measured straight within 0.2 mm before each trial and wiped clean of spatter.
 - **Plate and stand:** 3 mm hot-rolled mild-steel plate, 200 x 215 mm, wire-brushed along the line, held on the welded steel stand by two strap clamps on the edge away from the cut, with 55 mm overhanging. The cut line is scribed and filled with a white paint marker. A witness line is scribed on the kept part 20 mm from the cut line, with a tick every 5 mm (41 ticks, every tenth punch-marked). The witness line and ticks are on the real plate only, not in the simulated scene.
 - **Cutting circuit:** the stand rests on insulating pads on the station table and the work clamp is fixed to the stand, so the current returns through the plate, clamps and stand and never through a robot. Both grips (the torch's nylon block, the straightedge's nylon block) are insulating.
 - **Sparks and dross:** the jet and molten metal leave the underside of the cut. The steel tray under the line and the overhang holds 10 mm of dry sand to catch dross and the hot offcut (the simulated tray is empty). The stand's edge is 15 mm back from the line so the jet doesn't cut it. Welding blankets cover the station table round the stand and tray and hang 30 cm down its front edge; a spark curtain stands 0.5 m beyond the plate's right side, the direction the sparks travel.
 - **Arc light:** welding screens to EN ISO 25980, at least 1.8 m tall, close every open side of the cell. Nobody is inside while the arc can fire. Anyone looking at the arc directly uses a shade 5 filter or darker (plasma cutting under 40 A).
 - **Cameras:** each robot camera has a fixed shade 5 filter (or an auto-darkening one with its dark state at shade 5) and a clear, replaceable cover glass against spatter. The simulated cameras are unfiltered.
-- **Fume extraction:** a local exhaust arm with its hood 20-30 cm from the cut, on the side away from the arms and slightly above, plus the cell's general ventilation. Cutting painted, galvanised or oily plate is not allowed.
+- **Fume control:** cut outdoors or in an open bay, with the cut downwind of the supervisor and anyone nearby and a fan beside the cell drawing the plume away from the robots' cameras. OSHA's welding fact sheet (FS-3647) lists plasma cutting as a source of metal fume and advises exhaust near the plume and staying upwind outdoors; it also notes that working outdoors does not by itself guarantee adequate ventilation, so a local exhaust arm with its hood 20-30 cm from the cut is used where one is available. Only clean, uncoated mild steel is cut: painted, galvanised or oily plate is not allowed.
 - **Fire protection:** nothing combustible within the screens or within 10 m in the direction of the sparks unless covered by blankets; a CO2 or dry-powder extinguisher at the cell; a 30 minute fire watch after the last cut of a session.
 - **Heat on the robot:** aluminised (or leather) sleeves over both grippers and forearm links and over the wrist camera cables. The torch hand is 90 mm from the arc and above it; the straightedge hand is 105 mm from the line on the far side of the bar.
 - **Hot parts:** the offcut and the cut edge are left until under 50 C (IR thermometer or temperature crayon; about 5 minutes) and moved with tongs before then. The robot is not asked to touch the offcut, and the hands-clear criterion keeps both grippers 6 cm from it at the end.
 - **Noise and air:** plasma cutting at 20 A is about 90-100 dB(A) at the torch: hearing protection inside the room. The cutter's post-flow air is left to finish before anyone enters.
+
+## Equipment and cost for real trials
+
+Prices were seen in US retailer and rental listings on 11_16_26 and change often; any cutter with the capabilities in
+the first column will do.
+
+| Item | Capability needed | Example product | Price |
+|---|---|---|---|
+| Plasma cutter (buy) | 120 V, 20 A, drag-tip torch, cuts 3 mm steel | Forney Easy Weld 20P (item 251): 120 V, 20 A, drag torch with shield cup 85394, internal regulator and air dryer, needs 1.5 CFM at 60-100 psi (Forney operator manual) | about $390 (Home Depot) |
+| Air compressor (buy) | at least the cutter's flow at 90 psi | Fortress 6 gal (Harbor Freight 59840), 2.7 SCFM at 90 psi | about $230 |
+| Inline air dryer | dry, oil-free air | disposable desiccant filter (Harbor Freight Merlin 64637) | about $7 |
+| Consumables | electrode, tip | Forney 85392 kit, 2 electrodes and 2 tips | about $30 a kit |
+| Plate | 3 mm (1/8 in) hot-rolled mild steel | 12 x 12 x 1/8 in A36 flat stock, cut in two (Zoro) | about $25 for two plates |
+| Fan | moves the plume away | any 20 in box fan | about $30 |
+| **Purchase route total** | | cutter, compressor, dryer, consumables, fan | **about $690**, then about $13 of plate a trial |
+| Plasma cutter (rent) | as above | Sunbelt Rentals catalogue 0270195, a Hypertherm Powermax30 (120/240 V) | about $120 a day at an independent rental shop (Sunbelt quotes on request) |
+| Air compressor (rent) | 4 CFM at 90 psi | 20 gal portable compressor | about $30 a day |
+| **Rental route total** | | cutter and compressor, plus dryer and consumables | **about $150 a day**, enough for a session of trials |
+
+The simulated cut speeds come from a Powermax30-class manual (above). With another cutter, the three test cuts on
+scrap before a trial (fast, rated and slow) set the current so the real edge meets the same criteria. The Powermax30's
+maker gives 1 to 2 hours of arc-on time per electrode and nozzle set; one trial is 10 to 30 seconds of arc, so a set
+lasts well over a hundred trials. The welding screens, blankets, shade 5 filters, extinguisher and hold-to-run switch
+in the setup above are standard welding-shop items.
 
 ## Scoring: real measurement and simulated stand-in
 

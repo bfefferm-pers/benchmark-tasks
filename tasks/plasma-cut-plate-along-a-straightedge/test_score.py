@@ -1,4 +1,4 @@
-"""Scoring checks with no simulator (run in the simulator's Python environment): python -m pytest -q test_score.py"""
+"""Scoring tests with no simulator (run in the simulator's Python environment): python -m pytest -q test_score.py"""
 import math
 from types import SimpleNamespace as NS
 
