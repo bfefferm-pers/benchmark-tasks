@@ -15,7 +15,7 @@ No part of the robot may touch a cookie, and nothing is turned over.
 | `cookie_rack/embodiment.py` | Embodiment `yam_cookie`: the stock `yam_arena` embodiment plus these objects and the contact-force monitor |
 | `cookie_rack/plan.py` | Gripper-pose legs solved to joint targets with `yam_arena`'s IK; played by the stock `yam_scripted` policy |
 | `test_score.py` | 34 scorer tests on made-up states: every band and each shortcut |
-| `dev/` | `run.sh` (one trial), `media.sh` (videos and screenshot), `reach.py` (offline reach check), `trace.py` (log summary) |
+| `dev/` | `run.sh` (one trial), `media.sh` (videos and screenshot), `reach.py` (offline reach test), `trace.py` (log summary) |
 | `task.json` | The task card |
 
 ## Run and score a trial
@@ -39,7 +39,7 @@ inspect-robots run --embodiment yam_cookie -E task=task.py -E object_jitter=0 -E
 
 The run prints `task_score: <0..1>` at the end and the log keeps it. `COOKIE_DEBUG=1` prints every object's pose, each
 cookie's state and the peak measured loads five times a second. `python -m pytest test_score.py` runs the scorer tests
-(no simulator; needs `numpy`, `yam_arena` and this folder on the path). `python dev/reach.py` checks the demo's reach
+(no simulator; needs `numpy`, `yam_arena` and this folder on the path). `python dev/reach.py` tests the demo's reach
 offline.
 
 - **Runtime per trial:** the demo takes 94 s of simulated time (about 1,870 of the 2,400 steps) and ends itself on success;
@@ -75,8 +75,11 @@ rest of the tray is still good. Picking all four by hand therefore scores 0 (fou
 | shove the cookies with the blade held 4 mm off the pan | `COOKIE_VARIANT=shove` | 0.0 | the blade never got under; the cookies and the loose pan were pushed 23 cm; nothing reached the rack and the pan left its place |
 | tip the cookies off from 40 mm above the wires | `COOKIE_VARIANT=drop` | 0.0 | all four landed flat on the rack, three broke on landing (bending up to 0.025 N m): one good, three spoiled |
 
-One Dream-1 run (`--policy dream`, 2,400 steps) scored 0.0: the arms moved towards the pan, the turner was never
-picked up and no cookie moved.
+Revision (cookie mass 30 g to 35 g, to match the maker's specification): the demo was rerun twice on the L40S and
+scored 1.0 both times, and one Dream-1 run (`--policy dream`, 2,400 steps, on the aarch64 host) scored 0.0: the arms
+moved towards the pan and the rack, the turner was never picked up and no cookie moved. The submitted videos and
+screenshot are from these 35 g runs. The shortcut variants in the table above were run at 30 g and not repeated at 35 g;
+`test_score.py` (34 tests, passing at 35 g) covers their scoring.
 
 Not run in the simulator, covered by `test_score.py`: tipping or lifting the pan to pour (0 for the trial), cookies
 overhanging, leaning, stacked, upside down or still on the blade (not counted), a cookie on the table (spoiled), the
@@ -106,14 +109,29 @@ turner off its rest, a gripper not clear, the pan pushed away (each loses only t
 
 Objects as in `task.json`'s setup; all are ordinary bakery items.
 
-- Bake the cookies on the bare pan and let them cool on it until firm (pan below 40 C, checked with a contact or infrared
-  thermometer before the robot is enabled). The task does not need a hot pan, and none is used.
+- **Cookies, a standard source.** Otis Spunkmeyer Sweet Discovery Triple Chocolate frozen cookie dough, item 58814: 1.33 oz
+  (38 g) pre-shaped pucks, 240 to a case (about $145 a case from foodservice suppliers such as WebstaurantStore, so about
+  $0.60 a cookie). The maker's finished-food specification gives the baked cookie as 2.85 to 3.25 in (7.2 to 8.2 cm)
+  across, target 3.05 in (7.7 cm), and 1.25 oz (35 g); the simulated cookie is 76 mm across, 10 mm thick and 35 g. The
+  thickness is not in the specification: 10 mm is an estimate (a 35 g disc 77 mm across at about 0.75 g/cm3 is 10 mm
+  thick), to be confirmed with a ruler on the first batch.
+- **Preparation, about 35 minutes for a batch of 12 to 16.** Bake from frozen on a parchment-lined tray at the maker's
+  setting (convection oven 300 F for 11 to 14 minutes; rack oven 300 F for 12 to 14). Cool on the tray at room
+  temperature for 20 minutes, until firm and below 40 C (contact or infrared thermometer). The 20 minutes is this task's
+  choice, so that every trial uses cookies at the same, firm but brittle, state; the maker says only to cool at room
+  temperature.
+- **Acceptance, ruler and kitchen scale.** Use a cookie only if it is 72 to 82 mm across (mean of two perpendicular
+  diameters, the maker's range), 31 to 39 g, whole, and sits flat without rocking. Its underside is flat and browned from
+  the tray, with the edge rounded up about 1 to 2 mm (the simulated cookie's base edge curls up 1.5 mm).
+- **Placing.** Set four accepted cookies flat side down on the bare, clean, dry trial pan at the four marked places with
+  a spatula. The trial pan is not heated; the task does not need a hot pan, and none is used.
 - Mark the pan's outline, the rack's outline and the rest's place on the table with tape at setup. Fix the turner's rest
   to the table (tape or a clamp). The pan and rack stay loose.
 - The turner's blade is thin but not sharpened; use a turner with rounded corners. Nobody reaches into the workspace
-  while the arms are enabled. Forces are low: the turner weighs 69 g and a cookie 30 g.
+  while the arms are enabled. Forces are low: the turner weighs 69 g and a cookie 35 g.
 - Cookies handled by the robot's grippers, or that leave the pan and rack, are discarded, not eaten.
-- Reset: fresh cookies from the same batch for any broken or touched one; pan, rack and turner back on their marks.
+- Reset: an accepted cookie (same preparation and acceptance) for any broken or touched one; pan, rack and turner back on
+  their marks. A batch left more than 2 hours after cooling is not used, so the cookies' crispness stays the same.
 
 | Quantity | In the simulator | In a real trial |
 |---|---|---|
@@ -137,7 +155,7 @@ Objects as in `task.json`'s setup; all are ordinary bakery items.
 - The blade does not flex. The cookie's contact keeps a 0.3 mm rest gap so that it cannot sink through the 0.6 mm
   blade; without it the simulator let a cookie pass through the blade in one trial.
 - With the demo's light touch the pan moves less than 1 mm, so the second arm is not needed to steady it and the demo
-  leaves it parked. A clumsy push does move the pan (23 cm in the shove trial), and the scorer checks its place.
+  leaves it parked. A clumsy push does move the pan (23 cm in the shove trial), and the scorer scores its place.
 - The demo holds the handle with the fingers 3 mm past its faces rather than fully closed: fully closed, both fingers sit
   at their force limit and the handle buzzes sideways in the simulator, which walks a cookie off the blade.
 - The cookies start on the far two thirds of the pan, so that the blade can be set down in front of each one. The layout

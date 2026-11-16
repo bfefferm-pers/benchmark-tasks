@@ -1,4 +1,4 @@
-"""Offline reach check of the demo plan: IK error, joint-limit margin and duration. No simulator. Created 11_15_26."""
+"""Offline reach test of the demo plan: IK error, joint-limit margin and duration. No simulator. Created 11_15_26."""
 import sys, os
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

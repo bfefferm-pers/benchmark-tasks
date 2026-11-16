@@ -7,7 +7,7 @@ Frames (m), all with z up:
 - Pan: origin at the centre of its underside. A quarter sheet pan, long side along x: flat floor 305 x 216 mm, four
   flared walls to a 330 x 241 mm rim 25 mm up. One loose body. Its underside and its inside are separate colliders,
   because bare aluminium skates on a counter while a baked cookie's sugary base does not skate on the pan.
-- Cookie: origin at the centre of its base. 76 mm across, 10 mm thick, 30 g, one rigid body. The base's outer 6 mm
+- Cookie: origin at the centre of its base. 76 mm across, 10 mm thick, 35 g, one rigid body. The base's outer 6 mm
   curls up 1.5 mm, as a drop cookie's edge does; that curl is the only way under it. It is brittle by a criterion fed with
   the contact forces PhysX reports on it (see `Loads` in embodiment.py): it breaks when the bending moment across any
   diameter passes BREAK_BEND, or the force squeezing it across any diameter passes BREAK_SQUEEZE. A broken cookie
@@ -38,7 +38,7 @@ COOKIE_R = 0.038
 COOKIE_T = 0.010
 COOKIE_CURL = (0.006, 0.0015)  # the base's outer band: run and rise
 COOKIE_CROWN = 0.005  # the top's outer band rounds down over this run, by 2 mm
-COOKIE_MASS = 0.030
+COOKIE_MASS = 0.035
 BREAK_BEND = 0.02  # N m of bending across a diameter: a 2 N load at the middle of a 40 mm span
 BREAK_SQUEEZE = 3.0  # N pressed through the cookie from edge to edge, about ten times its weight
 BREAK_PRESS = 10.0  # N pressed down on its top

@@ -7,7 +7,7 @@ Run it:  inspect-robots run --embodiment yam_cookie -E task=task.py -E object_ji
 On the station table (x forward from the arms, y left, z up; the arms stand at y +0.305 and -0.305):
 - An aluminium quarter sheet pan (330 x 241 mm rim, 25 mm deep, 0.40 kg), long side pointing away from the robot, centred
   at x 0.335, y -0.060. It is loose and slides on the table.
-- Four baked cookies (76 mm across, 10 mm thick, 30 g) on the far two thirds of the pan, at x 0.335 and 0.440,
+- Four baked cookies (76 mm across, 10 mm thick, 35 g) on the far two thirds of the pan, at x 0.335 and 0.440,
   y -0.115 and -0.005. They are brittle: a cookie breaks if it is squeezed, pressed, pushed hard against something,
   levered or dropped.
 - A wire cooling rack (305 x 216 mm, 17 mm high, 0.22 kg), loose, right of the pan, centred at x 0.360, y -0.330.
