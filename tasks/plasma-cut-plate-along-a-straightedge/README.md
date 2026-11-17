@@ -47,6 +47,32 @@ The simulated cutter is a 30 A-class hand air plasma cutter (15-30 A output) set
 | Straightedge offset | 10 mm from the line | the drag shield's radius |
 | Kerf | about 1.4 mm (real trial only) | a mechanised-torch cut chart for a 45 A machine with the same kind of consumables, at 3 mm; not simulated |
 
+## How many workers regularly cut metal with a hand torch
+
+The jobs case counts workers who perform a torch-cutting task more than weekly, not whole occupations. O*NET 30.2
+(`Task Statements.txt` and `Task Ratings.txt`, https://www.onetcenter.org/database.html) gives, for each task, the
+share of incumbents who rate it relevant (scale RT) and, among them, how often they perform it (scale FT, categories
+4 to 7: more than weekly, daily, several times a day, hourly). Regular workers = BLS OOH 2025 jobs x RT x FT(4-7).
+The tasks are every O*NET task statement that names cutting with a torch or plasma.
+
+| Occupation (SOC) | Task (Core/Supplemental) | BLS jobs 2025 | Relevant | More than weekly | Regular workers |
+|---|---|---|---|---|---|
+| General maintenance and repair workers (49-9071) | "Operate cutting torches or welding equipment to cut or join metal parts." (Supplemental) | 1,621,800 | 50.3% | 33% | about 269,000 |
+| Welders, cutters, solderers and brazers (51-4121) | "Repair products by dismantling, straightening, reshaping, and reassembling parts, using cutting torches, ..." (Core) | 437,700 | 68.9% | 56% | about 169,000 |
+| Structural iron and steel workers (47-2221) | "Cut, bend, or weld steel pieces, using metal shears, torches, or welding equipment." (Core) | 68,300 | 98.4% | 78% | about 52,000 |
+| Structural metal fabricators and fitters (51-2041) | "Remove high spots and cut bevels, using hand files, portable grinders, and cutting torches." (Core) | 52,300 | 75.5% | 68% | about 27,000 |
+| Millwrights (49-9044) | "Fabricate and dismantle parts, equipment, and machines, using a cutting torch or other cutting equipment." (Core) | 40,700 | 100% | 59% | about 24,000 |
+| Rebar workers (47-2171) | "Cut rods to required lengths, using metal shears, hacksaws, bar cutters, or acetylene torches." (Core) | 16,600 | 100% | 92% | about 15,000 |
+| Boilermakers (47-2011) | "Shape seams, joints, or irregular edges ... using cutting torches, ..." (Core) | 10,200 | 79.6% | 35% | about 3,000 |
+| **Total** | | | | | **about 560,000** |
+| Plumbers, pipefitters and steamfitters (47-2152), not counted above | "Cut, thread, or hammer pipes to specifications, using tools such as saws, cutting torches, pipe threaders, or pipe benders." (Core) | 510,600 | 98.9% | 94% | about 475,000 |
+
+Limits of this estimate: the tasks cover torch cutting by plasma or oxy-fuel, not only plasma; the maintenance
+workers' task covers joining as well as cutting, so their figure overstates cutting; the plumbers' task names torches
+as one of several cutting tools, which is why they are kept out of the total; O*NET frequency ratings are survey
+estimates with sampling error. The link to the guided cut is the cutter manufacturer's instruction, cited above, to
+use a straightedge as a guide for straight hand cuts.
+
 ## Real-world cutting setup
 
 These are the trial's fixed settings, set once before a trial and not changed during it.
@@ -60,7 +86,7 @@ These are the trial's fixed settings, set once before a trial and not changed du
 - **Cutting circuit:** the stand rests on insulating pads on the station table and the work clamp is fixed to the stand, so the current returns through the plate, clamps and stand and never through a robot. Both grips (the torch's nylon block, the straightedge's nylon block) are insulating.
 - **Sparks and dross:** the jet and molten metal leave the underside of the cut. The steel tray under the line and the overhang holds 10 mm of dry sand to catch dross and the hot offcut (the simulated tray is empty). The stand's edge is 15 mm back from the line so the jet doesn't cut it. Welding blankets cover the station table round the stand and tray and hang 30 cm down its front edge; a spark curtain stands 0.5 m beyond the plate's right side, the direction the sparks travel.
 - **Arc light:** welding screens to EN ISO 25980, at least 1.8 m tall, close every open side of the cell. Nobody is inside while the arc can fire. Anyone looking at the arc directly uses a shade 5 filter or darker (plasma cutting under 40 A).
-- **Cameras:** each robot camera has a fixed shade 5 filter (or an auto-darkening one with its dark state at shade 5) and a clear, replaceable cover glass against spatter. Before each session, a 100 mm test cut on scrap is recorded through the filtered robot cameras and the supervisor's filtered view, and both must show the torch, the shield, the straightedge and the cut line throughout, with the arc not washing out the image; if it does, the auto-darkening filter's shade or the camera exposure is adjusted and the test repeated. The supervisor watches the same filtered view to run the arc switch. The simulated cameras are unfiltered.
+- **Cameras:** each robot camera has a fixed shade 5 filter (or an auto-darkening one with its dark state at shade 5) and a clear, replaceable cover glass against spatter. Before each session, a 100 mm test cut on scrap is recorded through the filtered robot cameras and the supervisor's filtered view, and both must show the torch and its shield, the guide (the straightedge) and the cut line throughout, with the arc not washing out the image; if it does, the auto-darkening filter's shade or the camera exposure is adjusted and the test repeated. The supervisor watches the same filtered view to run the arc switch. The simulated cameras are unfiltered.
 - **Fume control:** cut outdoors or in an open bay, with the cut downwind of the supervisor and anyone nearby and a fan beside the cell drawing the plume away from the robots' cameras. OSHA's welding fact sheet (FS-3647) lists plasma cutting as a source of metal fume and advises exhaust near the plume and staying upwind outdoors; it also notes that working outdoors does not by itself guarantee adequate ventilation, so a local exhaust arm with its hood 20-30 cm from the cut is used where one is available. Only clean, uncoated mild steel is cut: painted, galvanised or oily plate is not allowed.
 - **Fire protection:** nothing combustible within the screens or within 10 m in the direction of the sparks unless covered by blankets; a CO2 or dry-powder extinguisher at the cell; a 30 minute fire watch after the last cut of a session.
 - **Heat on the robot:** aluminised (or leather) sleeves over both grippers and forearm links and over the wrist camera cables. The torch hand is 90 mm from the arc and above it; the straightedge hand is 105 mm from the line on the far side of the bar.
