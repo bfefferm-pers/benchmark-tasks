@@ -49,29 +49,52 @@ The simulated cutter is a 30 A-class hand air plasma cutter (15-30 A output) set
 
 ## How many workers regularly cut metal with a hand torch
 
-The jobs case counts workers who perform a torch-cutting task more than weekly, not whole occupations. O*NET 30.2
-(`Task Statements.txt` and `Task Ratings.txt`, https://www.onetcenter.org/database.html) gives, for each task, the
-share of incumbents who rate it relevant (scale RT) and, among them, how often they perform it (scale FT, categories
-4 to 7: more than weekly, daily, several times a day, hourly). Regular workers = BLS OOH 2025 jobs x RT x FT(4-7).
-The tasks are every O*NET task statement that names cutting with a torch or plasma.
+The count is built from task-level survey data, not whole occupations, and keeps torch cutting apart from welding and
+from other cutting tools wherever the data allow. O*NET (https://www.onetcenter.org/database.html) gives, for each task,
+the share of incumbents who rate it relevant (scale RT) and, among them, how often they do it (scale FT, categories 4 to
+7: more than weekly, daily, several times a day, hourly). Regular workers = BLS OEWS May 2025 employment x RT x FT(4-7).
+The rows fall in three groups, shown separately so each can be judged on its own.
 
-| Occupation (SOC) | Task (Core/Supplemental) | BLS jobs 2025 | Relevant | More than weekly | Regular workers |
+**A. Tasks whose only cutting tool is a torch (no welding, no saws or shears): about 247,000.**
+
+| Occupation (SOC) | O*NET task (ID, release) | OEWS 2025 | Relevant | More than weekly | Regular workers |
 |---|---|---|---|---|---|
-| General maintenance and repair workers (49-9071) | "Operate cutting torches or welding equipment to cut or join metal parts." (Supplemental) | 1,621,800 | 50.3% | 33% | about 269,000 |
-| Welders, cutters, solderers and brazers (51-4121) | "Repair products by dismantling, straightening, reshaping, and reassembling parts, using cutting torches, ..." (Core) | 437,700 | 68.9% | 56% | about 169,000 |
-| Structural iron and steel workers (47-2221) | "Cut, bend, or weld steel pieces, using metal shears, torches, or welding equipment." (Core) | 68,300 | 98.4% | 78% | about 52,000 |
-| Structural metal fabricators and fitters (51-2041) | "Remove high spots and cut bevels, using hand files, portable grinders, and cutting torches." (Core) | 52,300 | 75.5% | 68% | about 27,000 |
-| Millwrights (49-9044) | "Fabricate and dismantle parts, equipment, and machines, using a cutting torch or other cutting equipment." (Core) | 40,700 | 100% | 59% | about 24,000 |
-| Rebar workers (47-2171) | "Cut rods to required lengths, using metal shears, hacksaws, bar cutters, or acetylene torches." (Core) | 16,600 | 100% | 92% | about 15,000 |
-| Boilermakers (47-2011) | "Shape seams, joints, or irregular edges ... using cutting torches, ..." (Core) | 10,200 | 79.6% | 35% | about 3,000 |
-| **Total** | | | | | **about 560,000** |
-| Plumbers, pipefitters and steamfitters (47-2152), not counted above | "Cut, thread, or hammer pipes to specifications, using tools such as saws, cutting torches, pipe threaders, or pipe benders." (Core) | 510,600 | 98.9% | 94% | about 475,000 |
+| Welders, cutters, solderers and brazers (51-4121) | "Dismantle metal assemblies or cut scrap metal, using thermal-cutting equipment, such as flame-cutting torches or plasma-arc equipment." (10249; Welders, Cutters, and Welder Fitters, 51-4121.06, rated 07/2012, O*NET 23.0-25.0, before 51-4121.06 and .07 were merged) | 416,210 | 84.9% | 59.1% | about 209,000 |
+| Valve and regulator repairers (49-9012) | "Disassemble and repair mechanical control devices or valves ... using power tools, hand tools, and cutting torches." (11779, 30.2) | 48,240 | 72.5% | 63.5% | about 22,000 |
+| Rail car repairers (49-3043) | "Remove locomotives, car mechanical units, or other components, using pneumatic hoists and jacks, pinch bars, hand tools, and cutting torches." (9987, 30.2) | 21,350 | 96.8% | 76.5% | about 16,000 |
 
-Limits of this estimate: the tasks cover torch cutting by plasma or oxy-fuel, not only plasma; the maintenance
-workers' task covers joining as well as cutting, so their figure overstates cutting; the plumbers' task names torches
-as one of several cutting tools, which is why they are kept out of the total; O*NET frequency ratings are survey
-estimates with sampling error. The link to the guided cut is the cutter manufacturer's instruction, cited above, to
-use a straightedge as a guide for straight hand cuts.
+**B. Pipefitters, whose cutting task names torches among pipe tools: about 200,000.** O*NET 24.0, the last release
+that rated pipefitters (47-2152.01) apart from plumbers (47-2152.02), gives task 4815, "Cut, thread, or hammer pipes to
+specifications, using tools such as saws, cutting torches, pipe threaders, or pipe benders", as relevant to 100% of
+pipefitters (113 raters, 07/2014), done more than weekly by 95.0% and daily or more by 88.1%. Plumbers' cutting task
+names no torch. The pipefitters' tool list in the same release includes cutting torches, "Plasma cutting guides" and
+"Torch cutter guides"; plumbers' torches are for joining (acetylene, butane, brazing). A union safety study notes
+"Torch cutting is also often done by pipe fitters, sheet metal workers, and ironworkers" (Meeker, Susi and Flynn,
+J Occup Environ Hyg 4:943, 2007). BLS does not split 47-2152 (465,840 in 2025); pipefitters were 45.2% of active
+plumber and pipe fitter apprentices in the Labor Department's federal workload table for FY2019 (12,951 of 28,648,
+https://www.dol.gov/agencies/eta/apprenticeship/about/statistics/2019). 465,840 x 45.2% x 100% x 95.0% = about 200,000.
+The task also names saws, threaders and benders, so this group's figure is an upper bound for torch cutting.
+
+**C. Maintenance and repair workers cutting with a torch or welding: about 254,000.** General maintenance and repair
+workers (49-9071, 1,529,700): "Operate cutting torches or welding equipment to cut or join metal parts." (3032, 30.2,
+Supplemental): 50.3% relevant, 33.0% more than weekly. This task covers joining as well as cutting, so this figure is
+also an upper bound for torch cutting.
+
+**Total: about 700,000** (A + B + C; 447,000 for A + B). The occupations do not overlap. Group A alone (about 247,000)
+is the part of the count that isolates torch cutting completely; groups B and C are the share of two large trades whose
+regular task includes a cutting torch, without a public split by tool. O*NET 30.2's tool lists name cutting torches or
+plasma cutters for 70 occupations in all, among them auto body technicians, diesel and farm equipment mechanics, and
+boilermakers, which are not counted here.
+
+**Why the cut is guided.** For straight hand cuts the makers direct a guide: "For straight-line cuts, use a straight
+edge as a guide" (Hypertherm Powermax45 SYNC operator manual); "brace the edge of the drag shield on a guide (a ruler,
+piece of wood, cardboard pattern, etc.)" (Miller, How to select and operate a hand-held plasma cutter); and collision
+repair procedures for sectioning say to "scribe the final cut line on the part and set up a guide" (I-CAR). Pipefitters'
+O*NET tool list names torch and plasma cutting guides (above).
+
+Limits: O*NET ratings are survey estimates with sampling error; task 10249's ratings date from 2012 and are applied to
+today's combined 51-4121 count, which includes solderers and brazers; the pipefitter share comes from registered
+apprentices, not the whole workforce.
 
 ## Real-world cutting setup
 
