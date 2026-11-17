@@ -47,54 +47,91 @@ The simulated cutter is a 30 A-class hand air plasma cutter (15-30 A output) set
 | Straightedge offset | 10 mm from the line | the drag shield's radius |
 | Kerf | about 1.4 mm (real trial only) | a mechanised-torch cut chart for a 45 A machine with the same kind of consumables, at 3 mm; not simulated |
 
-## How many workers regularly cut metal with a hand torch
+## Why the task matters (category Other)
 
-The count is built from task-level survey data, not whole occupations, and keeps torch cutting apart from welding and
-from other cutting tools wherever the data allow. O*NET (https://www.onetcenter.org/database.html) gives, for each task,
-the share of incumbents who rate it relevant (scale RT) and, among them, how often they do it (scale FT, categories 4 to
-7: more than weekly, daily, several times a day, hourly). Regular workers = BLS OEWS May 2025 employment x RT x FT(4-7).
-The rows fall in three groups, shown separately so each can be judged on its own.
+The case is the work that hand torch cutting is used for and the harm it does to the people doing it, not a headcount
+of welders. Each figure below is quoted from its source; where a figure covers more than torch cutting, it says so.
 
-**A. Tasks whose only cutting tool is a torch (no welding, no saws or shears): about 247,000.**
+**A. Cutting up contaminated steel in nuclear cleanup.** This is where a robot that can guide a hand torch is wanted now.
+- Scale. The Department of Energy carries $538.6 billion of the federal government's $667.3 billion environmental
+  liability (US Treasury, Notes to the FY 2025 Financial Statements, Note 14). GAO: "As of May 2025, EM estimated that
+  the remaining cleanup work at all its sites would cost more than half a trillion dollars", and it lists the liability
+  as a High-Risk area (GAO-26-107820, March 2026). EM's enacted budget was $8.767 billion in FY2024 and FY2025, and its
+  mission includes "deactivation and decommissioning of thousands of excess facilities" (DOE FY 2026 Congressional
+  Justification, Vol. 6). 19 commercial power reactors at 15 sites are being decommissioned (EIA).
+- Cutting is central, and plasma is a main method. Reactor internals "must be carefully surveyed and, in most cases, cut
+  into smaller pieces"; "Plasma arc cutting was the primary method of segmenting the RPV internals at Shoreham and the
+  Yankee Nuclear Power Station" (EPRI 1003029, 2001). Segmentation doses at three plants were 57, 73 and 177
+  person-rem (same report; those plants used other cutting methods). "Laser and plasma cutting systems are routinely
+  used for size reduction tasks within the nuclear decommissioning sector" (Anderson et al., Nucl. Eng. Des. 457,
+  115085, 2026, University of Strathclyde with the UK National Nuclear Laboratory).
+- Much of it is still done by hand, in suits. Rocky Flats Building 771 held 240 stainless-steel gloveboxes: "Workers
+  wearing cumbersome protective clothing cut up glovebox sections", and "Using plasma-arc torches to cut up stainless
+  steel gloveboxes significantly improved safety" (DOE fact sheet). At Savannah River, "Some tasks require that the
+  equipment be operated by a person wearing a plastic suit or full face respirator", the tools including "a plasma
+  cutting torch" (Fogle and Younkins, ANS Robotics and Remote Systems meeting, 1997). Outside the US, Sellafield
+  estimates 700 gloveboxes to size-reduce; the first, in 2024, "required operators to perform cutting manually while
+  wearing air-fed suits and respirators" (Anderson et al., 2026).
+- Robots lower the dose, and autonomy is the stated goal. "A study on robotic glovebox dismantling facilities found that
+  radiation exposure doses to workers were less than 1/5th of those in manual cutting facilities"; "Remote autonomous
+  cutting technologies can enhance operational effectiveness ... by moving operators away from cutting interface"; the
+  authors cite "the nuclear sector's drive to automate cutting processes" (Anderson et al., 2026). Their test cut is a
+  robot plasma-cutting 3 mm plate "representative of nuclear glovebox material" at 15 mm/s: the same thickness and
+  close to this task's 12.7 mm/s. Gloveboxes, tanks and piping are cut where they stand, with portable tools, not on a
+  cutting table, which is why a hand torch and a hand-placed guide are the right test.
+
+**B. Scrap, ship recycling and demolition.**
+- US scrap purchases were $19.7 billion in 2025, about 57 million tonnes consumed (USGS Mineral Commodity Summaries
+  2026). "One of the most common tools used to break apart large metal pieces is the gas cutting torch ... other torches
+  use plasma" (OSHA 3348, metal scrap recycling guidance).
+- Robotics researchers funded by a scrap recycler: "Currently, the cutting operation is conducted manually by skilled
+  workers using a gas torch ... This manual operation is slow and laborious"; the robot would take on "the slow,
+  dangerous and tedious cutting operation"; "We are not aware of any work in the literature on robotic methods for gas
+  cutting that is general enough to be applied to metal scrap recycling" (Akl, Alladkani and Calli, IEEE CASE 2021,
+  funded in part by European Metal Recycling). The EU's SHEREC project (EUR 7.95 million, 2024-2027) aims to "automate
+  the cutting ... in ship recycling", citing "unacceptably high levels of fatalities and injuries".
+- The harm: NIOSH found 12 of 13 air samples from torch "Burners" at a scrap recycler at or over the OSHA lead action
+  level or limit (Rodriguez, NIOSH, 2005); OSHA's interpretation for bridge demolition "which requires torch cutting of
+  lead-coated surfaces" presumes exposure above 2,500 ug/m3, 50 times the limit (1996); scrap and recycling wholesalers
+  had a 2016 fatality rate "nearly seven times" that of private industry (NIOSH, 2020; all causes).
+
+**C. Fires.** NFPA counts 4,580 US structure fires a year involving hot work, with 22 civilian deaths, 171 injuries and
+$484 million of direct damage (2014-2018). Of the 2,600 a year in non-home properties, 25% involved cutting torches
+(Swiss Re risk fact sheet citing Ahrens, NFPA, June 2021): about 650 fires a year (25% of 2,600, our arithmetic). The Chemical Safety Board has
+counted "over 60 fatalities since 1990" from hot work on tanks; in two of the fatal cases it summarises, cutting
+torches were the ignition (Daytona Beach 2006, 2 killed; Garner, Arkansas 2009, 3 killed; CSB bulletin 2009-01-SB).
+
+**D. The people who do it regularly.** O*NET task ratings (share rating the task relevant x share doing it more than
+weekly) x BLS OEWS May 2025 employment, counting only tasks whose only cutting tool is a torch:
 
 | Occupation (SOC) | O*NET task (ID, release) | OEWS 2025 | Relevant | More than weekly | Regular workers |
 |---|---|---|---|---|---|
-| Welders, cutters, solderers and brazers (51-4121) | "Dismantle metal assemblies or cut scrap metal, using thermal-cutting equipment, such as flame-cutting torches or plasma-arc equipment." (10249; Welders, Cutters, and Welder Fitters, 51-4121.06, rated 07/2012, O*NET 23.0-25.0, before 51-4121.06 and .07 were merged) | 416,210 | 84.9% | 59.1% | about 209,000 |
+| Welders, cutters, solderers and brazers (51-4121) | "Dismantle metal assemblies or cut scrap metal, using thermal-cutting equipment, such as flame-cutting torches or plasma-arc equipment." (10249; 51-4121.06, rated 07/2012, O*NET 23.0-25.0) | 416,210 | 84.9% | 59.1% | about 209,000 |
 | Valve and regulator repairers (49-9012) | "Disassemble and repair mechanical control devices or valves ... using power tools, hand tools, and cutting torches." (11779, 30.2) | 48,240 | 72.5% | 63.5% | about 22,000 |
 | Rail car repairers (49-3043) | "Remove locomotives, car mechanical units, or other components, using pneumatic hoists and jacks, pinch bars, hand tools, and cutting torches." (9987, 30.2) | 21,350 | 96.8% | 76.5% | about 16,000 |
 
-**B. Pipefitters, whose cutting task names torches among pipe tools: about 200,000.** O*NET 24.0, the last release
-that rated pipefitters (47-2152.01) apart from plumbers (47-2152.02), gives task 4815, "Cut, thread, or hammer pipes to
-specifications, using tools such as saws, cutting torches, pipe threaders, or pipe benders", as relevant to 100% of
-pipefitters (113 raters, 07/2014), done more than weekly by 95.0% and daily or more by 88.1%. Plumbers' cutting task
-names no torch. The pipefitters' tool list in the same release includes cutting torches, "Plasma cutting guides" and
-"Torch cutter guides"; plumbers' torches are for joining (acetylene, butane, brazing). A union safety study notes
-"Torch cutting is also often done by pipe fitters, sheet metal workers, and ironworkers" (Meeker, Susi and Flynn,
-J Occup Environ Hyg 4:943, 2007). BLS does not split 47-2152 (465,840 in 2025); pipefitters were 45.2% of active
-plumber and pipe fitter apprentices in the Labor Department's federal workload table for FY2019 (12,951 of 28,648,
-https://www.dol.gov/agencies/eta/apprenticeship/about/statistics/2019). 465,840 x 45.2% x 100% x 95.0% = about 200,000.
-The task also names saws, threaders and benders, so this group's figure is an upper bound for torch cutting.
-
-**C. Maintenance and repair workers cutting with a torch or welding: about 254,000.** General maintenance and repair
-workers (49-9071, 1,529,700): "Operate cutting torches or welding equipment to cut or join metal parts." (3032, 30.2,
-Supplemental): 50.3% relevant, 33.0% more than weekly. This task covers joining as well as cutting, so this figure is
-also an upper bound for torch cutting.
-
-**Total: about 700,000** (A + B + C; 447,000 for A + B). The occupations do not overlap. Group A alone (about 247,000)
-is the part of the count that isolates torch cutting completely; groups B and C are the share of two large trades whose
-regular task includes a cutting torch, without a public split by tool. O*NET 30.2's tool lists name cutting torches or
-plasma cutters for 70 occupations in all, among them auto body technicians, diesel and farm equipment mechanics, and
-boilermakers, which are not counted here.
+About 247,000 in all. This is a floor, not the case for the task: torch cutting is also part of tasks that list other
+tools (pipefitters, ironworkers, rebar workers, millwrights, maintenance workers), which are not counted because the
+data do not split them by tool.
 
 **Why the cut is guided.** For straight hand cuts the makers direct a guide: "For straight-line cuts, use a straight
 edge as a guide" (Hypertherm Powermax45 SYNC operator manual); "brace the edge of the drag shield on a guide (a ruler,
 piece of wood, cardboard pattern, etc.)" (Miller, How to select and operate a hand-held plasma cutter); and collision
-repair procedures for sectioning say to "scribe the final cut line on the part and set up a guide" (I-CAR). Pipefitters'
-O*NET tool list names torch and plasma cutting guides (above).
+repair procedures for sectioning say to "scribe the final cut line on the part and set up a guide" (I-CAR).
 
-Limits: O*NET ratings are survey estimates with sampling error; task 10249's ratings date from 2012 and are applied to
-today's combined 51-4121 count, which includes solderers and brazers; the pipefitter share comes from registered
-apprentices, not the whole workforce.
+**Sources (URLs).** Treasury Note 14: https://fiscal.treasury.gov/system/files/2026-04/2025-note-14-financial-statements.pdf;
+GAO-26-107820: https://www.gao.gov/products/GAO-26-107820; DOE EM budget: https://www.energy.gov/sites/default/files/2025-06/doe-fy-2026-vol-6-em_0.pdf;
+EIA: https://www.eia.gov/energyexplained/nuclear/us-nuclear-industry.php; EPRI 1003029: https://restservice.epri.com/publicdownload/000000000001003029/0/Product;
+Anderson et al. 2026: https://strathprints.strath.ac.uk/96760/; Rocky Flats 771: https://www.energy.gov/sites/prod/files/edg/news/archives/documents/Building771FactSheet.pdf;
+Fogle and Younkins: https://inis.iaea.org/records/06bm2-by573; USGS scrap: https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-iron-steel-scrap.pdf;
+OSHA 3348: https://www.osha.gov/Publications/OSHA3348-metal-scrap-recycling.pdf; Akl et al.: https://par.nsf.gov/servlets/purl/10300191;
+SHEREC: https://cordis.europa.eu/project/id/101136056; NIOSH 2005: https://stacks.cdc.gov/view/cdc/197415;
+NIOSH 2020: https://cdc.gov/niosh/bulletin/2020/wholesale-recycling.html; Swiss Re: https://corporatesolutions.swissre.com/dam/jcr:04741b43-c09f-4d31-9997-730a3b92fb78/res-hot-workf-factsheet.pdf;
+CSB: https://www.csb.gov/assets/1/20/csb_hot_work_safety_bulletin_embargoed_until_10_a_m__3_4_10.pdf; O*NET: https://www.onetcenter.org/database.html.
+
+Limits: no source gives the share of decommissioning or scrap cutting done by hand torch, or counts torch cutters as an
+occupation; the cutting-torch fire share is from an insurer quoting NFPA; O*NET ratings are survey estimates, and task
+10249's date from 2012.
 
 ## Real-world cutting setup
 
