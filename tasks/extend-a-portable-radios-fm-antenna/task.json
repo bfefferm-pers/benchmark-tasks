@@ -1,0 +1,21 @@
+{
+  "title": "Pull a pocket radio's telescopic antenna out to full length and stand it upright, leaving the 190 g radio standing",
+  "category": "Societal relatability",
+  "keywords": [
+    "portable radio",
+    "telescopic antenna",
+    "aerial",
+    "bimanual",
+    "hold and pull",
+    "household"
+  ],
+  "instruction": "Get this radio ready for FM: pull the antenna all the way out and stand it straight up, and leave the radio standing where it is.",
+  "context": "Pulling out a radio's telescopic aerial and pointing it up is something almost everyone has done or watched: on a kitchen or bedside radio, a boombox, a car or a TV's rabbit ears. A pocket radio is lighter than the pull its antenna needs, so people hold the radio with one hand while the other draws the thin tip out along its axis, section by section, and swing it upright on its swivel; pulled carelessly, the radio lifts or tips over instead. A battery radio is on the US government's basic emergency-kit list (ready.gov/kit), so this is also the first thing done in a power cut.",
+  "setup": "Positions in cm from the arm bases' midpoint, x forward and y toward the left arm, on a bare wooden table. Radio: a Sony ICF-P26 portable AM/FM radio (black plastic case 6.95 wide x 11.9 tall x 3.8 cm deep, 190 g with two AA cells, switched off), standing upright on its flat base, front (speaker and dial) facing the robot, the middle of its base at (30, 0). Its telescopic FM antenna (five steel sections, 11.1 cm from swivel to tip collapsed, 43.2 cm extended, a 6 mm cylindrical tip knob) is fully collapsed and tilted 60 degrees back from vertical on its swivel at the top right of the radio's back. Both grippers start open at the ready pose. The screenshot shows the start.",
+  "scoring": "Everything is judged on the final state, after both hands have been clear of the radio and antenna (each fingertip midpoint at least 4 cm from the case and from the antenna) for the last 1 s. Antenna: 0.15 for each section's worth of length, i.e. swivel to tip at least 18.8, 26.9, 34.9 and 42.9 cm (0.60 in all), plus 0.40 if it is within 15 degrees of vertical. The trial scores 0 if the hands are not clear for the last 1 s, if the radio ends tilted more than 10 degrees from standing upright (tipped, lying down or held up by the antenna), or if the middle of its base ends more than 10 cm from its start; between 3 and 10 cm the score is capped at 0.5. Doing nothing scores 0: the antenna starts collapsed and 60 degrees from vertical. Real trial: with the robot stopped and its hands away, a tape measure from the swivel's pin to the top of the tip knob gives the length; a phone inclinometer held against the outer section gives its angle from vertical, and against the case's side the radio's tilt; a masking-tape outline round the radio's base and a ruler give how far it moved; a side photo is kept.",
+  "run_limit": "1,200 steps (1 minute at 20 Hz)",
+  "reset_notes": "Nothing is consumed. Collapse the antenna fully, set it 60 degrees back from vertical with a printed angle template held against the swivel, and stand the radio in its tape outline. Before a session, with the radio held, pull the tip knob along the antenna's axis with a 10 N spring scale: the sections should start to slide at 1.5 to 2.4 N; a sideways pull at the tip knob of the collapsed antenna should swing it on its swivel at about 0.9 N (0.10 N m).",
+  "fidelity": "True size from Sony's published body size and mass and a retailer's published antenna lengths. Section count, tube diameters, knob size, swivel position and all friction values are not published: chosen to fit the lengths and stated in the README. Each slide has Coulomb friction and a hard stop; the swivel holds by friction. The tubes keep their mass but carry no weight (15 g; PhysX joint friction creeps under it). The swivel's sideways axis and the stowing clip are not modelled.",
+  "scores": "Scripted open-loop demo: 1.0 in three simulator runs (two cloud, one local). Dream-1 run: 0.0.",
+  "media": "M-5SMWH5"
+}
