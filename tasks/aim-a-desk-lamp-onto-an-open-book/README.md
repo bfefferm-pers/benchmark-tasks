@@ -129,7 +129,7 @@ arm instead when it is not.
 | Lamp settled | no joint moved more than 0.3 degree during 3 s with the hands clear | the laser spot does not move for 3 s (photo at the start and end) |
 | Beam's centre to the dot | distance in the page's plane, from the shade's axis meeting the page to the dot's centre | steel ruler from the red laser spot to the dot's centre; overhead photo |
 | Shade height | the mouth's centre at least 30 cm above the desk | tape measure from the desk to the middle of the shade's mouth |
-| Notebook and base not moved | each within 20 mm of its start and tipped under 3 degrees | masking-tape outlines round the base and the notebook; ruler from the outline |
+| Notebook and base not moved | at the reading, each within 20 mm of its start and tilted under 3 degrees (a bump that leaves them in place does not count) | masking-tape outlines round the base and the notebook; ruler from the outline |
 
 Bands: 1.0 within 30 mm with the mouth at least 30 cm up; 0.5 within 60 mm with the mouth at least 30 cm up; 0.25 within
 100 mm, or within 60 mm with the mouth lower than 30 cm; otherwise 0. A shade facing level or up has no spot and scores
@@ -143,10 +143,14 @@ The lamp stands free on its own base on a desk or table at least 90 x 60 cm; the
 spine square to the desk's front edge, the dot stuck in the middle of the right-hand page. Masking-tape outlines mark the
 base and the notebook. The lamp's start pose is set from a printed side-view template.
 
-The beam's centre is made visible by a 5 mW, 650 nm dot laser module (10 mm across, 6.3 g) held centred on the bulb's
-dome by a paper collar, pointing along the shade's axis. Its 3 x AAA battery box stays on the desk, its thin lead taped
-along the arm; the module adds about 6 g to the head (the lamp's sheet allows bulbs of 25 to 45 g). The supervisor
-switches it on only after the robot has stopped with its hands away, and it points down onto the page. The lamp's own
+The beam's centre is made visible by a Class 2 (1 mW), 650 nm dot laser module held centred on the bulb's dome by a
+paper collar, pointing along the shade's axis; it weighs a few grams, well inside the bulb mass the lamp's sheet allows
+(25 to 45 g). Its 2 x AAA (3 V) battery box with an on/off switch stays on the desk, its thin lead taped along the arm.
+A Class 2 beam (1 mW or less) is safe for a momentary accidental glance, which the blink reflex limits; the
+5 mW module first specified was replaced for this reason. Safe aim before switching on: the supervisor waits until the robot has stopped with its hands away,
+confirms by eye that the shade's mouth faces down onto the desk (its axis below horizontal and the notebook under it),
+that nobody's face is at or below the shade's height within 1 m, and that no mirror or glossy surface is in the beam's
+path; only then is the module switched on, and it is switched off before anyone reaches toward the lamp. The lamp's own
 bulb is a 6.5 W LED and runs cool; the lamp can stay unplugged for scoring. The robot moves only light joints: the
 largest push the demo needs is about 3 N at the shade (2.8 N turns the shade at the point it pushes).
 
@@ -157,14 +161,14 @@ largest push the demo needs is about 3 N at the shade (2.8 N turns the shade at 
 | Lamp | Anglepoise Type 75 Desk Lamp, Jet Black (supplied with an LED bulb) | $320 | https://aplusrstore.com/products/anglepoise-type-75-desk-lamp ; https://www.dwr.com/lighting-desk-lamps/type-75-desk-lamp/2196970.html |
 | Notebook | Moleskine Classic Notebook, Large, hard cover, 240 pages | $26.00 | https://www.target.com/p/moleskine-notebook-classic-large-hardcover/-/A-89487844 |
 | Dot | Avery 5466 removable color-coding labels, 3/4 in round, red, 1,008 | $14.29 | https://www.staples.com/avery-laser-inkjet-color-coding-labels-3-4-dia-red-1008-labels-per-pack-5466/product_166751 |
-| Beam marker | Adafruit 1054 laser diode, 5 mW 650 nm red | $5.95 | https://www.adafruit.com/product/1054 |
-| Its battery box | Adafruit 727, 3 x AAA holder with on/off switch (plus three AAA cells) | $1.95 | https://www.adafruit.com/product/727 |
+| Beam marker | Picotronic 70100594 red dot laser module, Class 2, 1 mW, 650 nm, 2.7-3.3 V | GBP 40.14 (about $51) | https://www.rapidonline.com/picotronic-70100594-red-class-2-laser-10m-1mw-2-7-3-3vdc-30ma-650nm-wavelength-57-5872 |
+| Its battery box | Adafruit 4191, 2 x AAA holder with on/off switch (3 V, plus two AAA cells) | EUR 5.75 (about $6) | https://opencircuit.shop/product/2-x-aaa-battery-holder-on-off-switch-jst-ph |
 | Joint stiffness test | Arbor Scientific 1000 g (10 N) push-pull spring scale | $10.95 | https://arborsci.com/products/1000g-push-pull-spring-scale |
 | Shade height | Stanley 16 ft PowerLock tape measure | $11.97 | https://www.homedepot.com/p/Stanley-16-ft-PowerLock-Tape-Measure-33-116L/100654911 |
 | Spot to dot, outlines | Westcott 10415 12 in stainless steel ruler, cork back | $8.49 | https://www.quill.com/westcott-stainless-steel-rulers-12/cbs/001457.html |
 | Outlines | ScotchBlue 2090 painter's tape, 0.94 in x 60 yd, one roll | $10.27 | https://www.walmart.com/ip/ScotchBlue-Original-Multi-Surface-Painters-Tape-94-inch-x-60-yard-2090-1-Roll/471970548 |
 
-Total about $410, all reusable; nothing is consumed per trial (one sticker dot lasts many trials; the AAA cells last
+Total about $460, all reusable; nothing is consumed per trial (one sticker dot lasts many trials; the AAA cells last
 many sessions).
 
 ## Reset

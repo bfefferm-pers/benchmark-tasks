@@ -17,6 +17,6 @@
   "run_limit": "2,400 steps (2 minutes at 20 Hz)",
   "reset_notes": "Nothing is consumed. Set the lamp's base and the notebook back in their masking-tape outlines, and the lamp back to its start pose by a printed side-view template (the shade's mouth 16 cm up over a tape cross on the desk). Spring-scale test before a session, lamp in the goal pose: with the upper arm held, a level pull toward the base on the bottom of the shade's near rim tilts the shade at about 2.1 N; with the arm free the same pull swings the arm first, at about 1.8 N.",
   "fidelity": "True size from Anglepoise's dimensioned drawing and published reach. The springs are modelled as an ideal balance: arm and shade keep their mass but carry no weight, and joint friction holds any pose, as the real lamp does; spring rates are not published and the joint friction values are estimates. The lower arm's parallel rods are one rigid link. Light is not rendered: the beam is the shade's axis. The notebook is one rigid block.",
-  "scores": "Scripted open-loop demo: 1.0 in four simulator runs (three cloud, one local). Dream-1 run: 0.0.",
+  "scores": "Scripted open-loop demo: 1.0 in five simulator runs (three cloud, two local, the latest on this revision's scorer). Dream-1 run: 0.0 (rerun on this revision).",
   "media": "M-9TR3U2"
 }

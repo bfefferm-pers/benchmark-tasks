@@ -126,6 +126,14 @@ def test_base_dragged_scores_zero():
     assert run([(objects(T.GOAL_POSE), 0.5), (objects(T.GOAL_POSE, base_dxy=(0.0, 0.03)), 4.0)]) == 0.0
 
 
+def test_transient_bump_that_returns_still_scores():
+    # the reviewer's case: the notebook and the base are knocked 30 mm mid-trial but end where they started; only the
+    # final poses count, as in the real trial
+    seq = [(objects(T.GOAL_POSE), 0.5), (objects(T.GOAL_POSE, book_dxy=(0.03, 0.0), base_dxy=(0.0, 0.03)), 0.5),
+           (objects(T.GOAL_POSE), 4.0)]
+    assert run(seq) == 1.0
+
+
 def test_shade_facing_up_has_no_spot():
     pose = (T.GOAL_POSE[0], T.GOAL_POSE[1], T.GOAL_POSE[2], math.radians(120.0))
     err, _ = T.reading(objects(pose))

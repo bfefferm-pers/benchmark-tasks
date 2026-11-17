@@ -60,12 +60,12 @@ CLEAR_ARM = 0.05  # a hand is clear of the lamp with its fingertip midpoint this
 CLEAR_SHADE = 0.11  # ... and this far from the shade's axis (the mouth is 7.2 cm in radius)
 SETTLE_S = 3.0  # both hands clear and the lamp still for this long before the reading counts
 STILL_DEG = 0.3  # the lamp is still while no joint has moved more than this since the hands came clear
-MOVED = 0.020  # the notebook or the lamp's base moved more than this (m) from its start: the trial scores 0
-TIPPED_DEG = 3.0  # the lamp's base tipped more than this
+MOVED = 0.020  # at the end, the notebook or the lamp's base more than this (m) from its start: the trial scores 0
+TIPPED_DEG = 3.0  # ... or, at the end, the lamp's base or the notebook tilted more than this
 
 
 def _fresh():
-    return {"t": 0.0, "clear": 0.0, "ref": None, "start": None, "moved": False, "worst_move": 0.0}
+    return {"t": 0.0, "clear": 0.0, "ref": None, "start": None, "worst_move": 0.0}
 
 
 _trial = _fresh()
@@ -125,7 +125,8 @@ def _tilt_deg(q):
 
 
 def note_step(objects, dt):
-    """After every control step: has the notebook or the base moved; are both hands clear; has the lamp stayed still."""
+    """After every control step: record the largest displacement so far (debug only); are both hands clear; has the lamp
+    stayed still. Whether the notebook or the base has moved is judged in score() from their poses at the end."""
     tr = _trial
     tr["t"] += dt
     b, bk = np.asarray(objects["lamp_base"].pos, float), np.asarray(objects["book"].pos, float)
@@ -133,8 +134,6 @@ def note_step(objects, dt):
         tr["start"] = (b.copy(), bk.copy())
     mv = max(float(np.linalg.norm(b[:2] - tr["start"][0][:2])), float(np.linalg.norm(bk[:2] - tr["start"][1][:2])))
     tr["worst_move"] = max(tr["worst_move"], mv)
-    if mv > MOVED or _tilt_deg(objects["lamp_base"].quat_xyzw) > TIPPED_DEG or _tilt_deg(objects["book"].quat_xyzw) > TIPPED_DEG:
-        tr["moved"] = True
     q = np.degrees(np.r_[objects["lamp_q"].pos, objects["lamp_q"].low[0]])
     if all(hand_clear(objects, h) for h in ("left_tcp", "right_tcp")):
         if tr["ref"] is None or np.max(np.abs(q - tr["ref"])) > STILL_DEG:
@@ -154,11 +153,25 @@ def credit(err, mouth_h):
     return min(c, LOW_CAP) if mouth_h < MIN_MOUTH_H else c
 
 
+def displaced(objects):
+    """True if, now, the notebook or the lamp's base is more than 20 mm (in plan) from where it started, or either is
+    tilted more than 3 degrees. Judged from the current poses only, as in the real trial (tape outlines at the end);
+    a bump that leaves both where they were does not count."""
+    st = _trial["start"]
+    if st is None:
+        return False
+    b, bk = np.asarray(objects["lamp_base"].pos, float), np.asarray(objects["book"].pos, float)
+    mv = max(float(np.linalg.norm(b[:2] - st[0][:2])), float(np.linalg.norm(bk[:2] - st[1][:2])))
+    return (mv > MOVED or _tilt_deg(objects["lamp_base"].quat_xyzw) > TIPPED_DEG
+            or _tilt_deg(objects["book"].quat_xyzw) > TIPPED_DEG)
+
+
 def score(objects):
-    """0 if the notebook or the lamp's base moved more than 20 mm (or tipped), or until both hands have been clear of the
-    lamp and the lamp still for 3 s. Then, by the beam centre's distance from the dot: 1.0 within 30 mm, 0.5 within 60 mm,
-    0.25 within 100 mm, else 0; a shade mouth under 30 cm above the desk caps it at 0.25."""
-    if _trial["moved"] or _trial["clear"] < SETTLE_S - 1e-9:
+    """0 if, at the time of the reading, the notebook or the lamp's base is more than 20 mm from its start or tilted more
+    than 3 degrees, or until both hands have been clear of the lamp and the lamp still for 3 s. Then, by the beam centre's
+    distance from the dot: 1.0 within 30 mm, 0.5 within 60 mm, 0.25 within 100 mm, else 0; a shade mouth under 30 cm
+    above the desk caps it at 0.25."""
+    if displaced(objects) or _trial["clear"] < SETTLE_S - 1e-9:
         return 0.0
     return credit(*reading(objects))
 
@@ -172,7 +185,7 @@ def debug_line(objects, t):
     q = np.degrees(np.r_[objects["lamp_q"].pos, objects["lamp_q"].low[0]])
     r = lambda v: np.round(1000 * np.asarray(v), 0).tolist()  # noqa: E731
     return (f"LAMP t={t:6.2f} err {1000 * err:7.1f} mm h {1000 * h:6.1f} q {np.round(q, 1).tolist()} clear {_trial['clear']:.2f} "
-            f"moved {int(_trial['moved'])} ({1000 * _trial['worst_move']:.1f}) L {r(objects['left_tcp'].pos)} R {r(objects['right_tcp'].pos)} "
+            f"displaced {int(displaced(objects))} (worst {1000 * _trial['worst_move']:.1f}) L {r(objects['left_tcp'].pos)} R {r(objects['right_tcp'].pos)} "
             f"score {score(objects):.3f} S {r(objects['lamp_lower'].pos)} E {r(objects['lamp_upper'].pos)} K {r(objects['lamp_head'].pos)} "
             f"base {r(objects['lamp_base'].pos)} book {r(objects['book'].pos)}")
 
